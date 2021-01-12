@@ -109,7 +109,6 @@ The best and final model was an ARIMA model of order = (1,1,1), or p=1, d=1, and
 
 ## Code Files
 
-- TBD
 - Plot_Series_Difference.py : contains function that plots a series of data and its' first difference separately
 - LSTM_Windowize.py : contains function to "time" windowize data in preparation for LSTM/RNN modeling
 - Coinbase_Data.py : contains function to pull Coinbase data for desired/inputted cryptocurrency 
