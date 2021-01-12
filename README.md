@@ -17,15 +17,15 @@ The line chart below shows the progression of Bitcoin's 'Close' Price over time 
 Other prominent financial indicators in making informed trades include the use of VWAP vs. Price, MACD line vs. Signal line, and RSI. Below are line charts displaying 10-day VWAP vs. BTC-USD 'Close' Price, MACD line vs. Signal line, and Biweekly RSI. When VWAP lies above actual price, this is an indicator to sell or wait to buy, whereas when VWAP lies below, this is an indicator to buy or wait to sell. Cross-overs between VWAP and actual price are the optimal time to make these decisions, whether crossing above or below. When MACD crosses above the Signal line, this is an indicator to buy, whereas vice versa an indicator to sell. Moreover, the thresholds of 70 and 30 for RSI are generally used to indicate when a cryptocurrency is overbought or oversold, indicating times to sell or buy respectively.   
 
 <p align="center">
-<img src="Images/VWAP.png" width="800" height="275">
+<img src="Images/VWAP.png" width="600" height="275">
 <p/>
 
 <p align="center">
-<img src="Images/MACDSignal.png" width="800" height="275">
+<img src="Images/MACDSignal.png" width="600" height="275">
 <p/>
 
 <p align="center">
-<img src="Images/RSI.png" width="800" height="275">
+<img src="Images/RSI.png" width="600" height="275">
 <p/>
 
 As for the histogramic distribution of Bitcoin's losses and gains over time, the majority of the occurrences lie in the 0 to -1% bin, indicating the majority of daily returns is a loss ranging from 0 to 1%. See below. 
@@ -40,19 +40,19 @@ As for the histogramic distribution of Bitcoin's losses and gains over time, the
 As for modeling Bitcoin's 'Close' Price, the first model incorporated ln(Close) ~ Relative_Time, i.e. with day 0 at 01FEB20 and day 346 at 12JAN21, a total of 347 days. This served as more of start point since with time series, autoregression is a typical issue to have to deal with, as was the case with this initial model. The second model incorporated seasonality on a monthly time scale, with each month being statistically significant in describing the variation of BTC-USD's 'Close' Price, i.e. ln(Close) ~ Relative_Time + monthly dummy variables. Some outlier residuals distorted the evenness of the overall distribution of the residuals, but the residuals were overall random and normal. To incorporate additional top cryptocurrency prices into the second model to increase its' predictive power, their time-lagged (by 1 day) correlations with BTC-USD were visualized in a correlation plot as seen below. Time lag was applied in order to be able to predict the following day's BTC-USD 'Close' price. In order of highest to lowest significant correlation on this specific time scale from 01FEB20, i.e. ETH-USD, LTC-USD, BNB-USD, BCH-USD, and XRP-USD, all were included until arriving at a model with only statistically significant independent variables: Close ~ Relative_Time + Feb + Jun + Aug + Sep + Oct + Nov + Jan + Close_LTC_lag_1 + Close_XRP_lag_1 + Close_ETH_lag_1. To have a baseline model for comparison purposes, a 3-day MA time series model was calculated; this baseline model's RMSE was greater than this third model, i.e. ~787.15 vs. ~614.26, therefore this model was an improvement upon the baseline model. For a comparison of these models against actual price, see below. 
 
 <p align="center">
-<img src="Images/corrheatmap.png" width="350" height="150">
+<img src="Images/corrheatmap.png" width="300" height="150">
 <p/>
 
 <p align="center">
-<img src="Images/Model1Model2Actual.png" width="350" height="150">
+<img src="Images/Model1Model2Actual.png" width="600" height="250">
 <p/>
 
 <p align="center">
-<img src="Images/Model2Model6Actual.png" width="350" height="150">
+<img src="Images/Model2Model6Actual.png" width="600" height="250">
 <p/>
 
 <p align="center">
-<img src="Images/MA_Actual.png" width="350" height="150">
+<img src="Images/MA_Actual.png" width="600" height="250">
 <p/>
 
 The best and final model was an ARIMA model of order = (1,1,1), or p=1, d=1, and q=1. This was found by executing a grid search among potential seasonality through the pmdarima Python library ranging from 1 to 30 days, or data points, per cycle. This type of model had the highest log likelihood score among all other models calculated by the function. The "weekly" seasonal model with the lowest AIC, i.e. SARIMAX(order = (1,1,1), seasonal_order = (1,0,[],7)), didn't have a lower RMSE, but was the second best model. Prediction of tomorrow's close price will be done when such data becomes available later, and this will be compared in terms of percent error relative to actual price. LSTM time-series modeling was attempted, however more granular data is needed for this model to be effectively reached, executable, and accurate.
@@ -70,7 +70,7 @@ The best and final model was an ARIMA model of order = (1,1,1), or p=1, d=1, and
 <p/>
 
 <p align="center">
-<img src="Images/ARIMASARIMAXActual.png" width="350" height="150">
+<img src="Images/ARIMASARIMAXActual.png" width="600" height="250">
 <p/>
 
 
