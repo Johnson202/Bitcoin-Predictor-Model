@@ -8,14 +8,10 @@ The Yahoo! Finance datasets, specifically BTC-USD, BCH-USD, BNB-USD, BSV-USD, EO
 
 The datasets can be found [here] via applicable searches (https://finance.yahoo.com/).
 
-The line charts below show the progression of Bitcoin's 'Close' Price over time since inception in the cryptocurrency market and since 01FEB20. Near the end of 2018, Bitcoin's price crashed, and there is quite the speculation that Bitcoin may experience another similar plunge in the near future following its' exponentially increasing price since March, 2020. A drastic negative market correction could potentially drive the price to plunge due to the domino effect of investors selling off their Bitcoin!  
+The line chart below shows the progression of Bitcoin's 'Close' Price over time since inception in the cryptocurrency market. Near the end of 2018, Bitcoin's price crashed, and there is quite the speculation that Bitcoin may experience another similar plunge in the near future following its' exponentially increasing price/bullish trend since March, 2020. A drastic negative market correction could potentially drive the price to plunge due to the domino effect of investors selling off their Bitcoin!  
 
 <p align="center">
-<img src="Images/Bitcoinlifetime.png" width="800" height="275">
-<p/>
-
-<p align="center">
-<img src="Images/year_month_label.png" width="800" height="275">
+<img src="Images/BTClifetime.png" width="800" height="275">
 <p/>
 
 Other prominent financial indicators in making informed trades include the use of VWAP vs. Price, MACD line vs. Signal line, and RSI. Below are line charts displaying 10-day VWAP vs. BTC-USD 'Close' Price, MACD line vs. Signal line, and Biweekly RSI. When VWAP lies above actual price, this is an indicator to sell or wait to buy, whereas when VWAP lies below, this is an indicator to buy or wait to sell. Cross-overs between VWAP and actual price are the optimal time to make these decisions, whether crossing above or below. When MACD crosses above the Signal line, this is an indicator to buy, whereas vice versa an indicator to sell. Moreover, the thresholds of 70 and 30 for RSI are generally used to indicate when a cryptocurrency is overbought or oversold, indicating times to sell or buy respectively.   
