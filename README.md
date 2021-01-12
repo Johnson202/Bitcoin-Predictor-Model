@@ -11,21 +11,21 @@ The datasets can be found [here] via applicable searches (https://finance.yahoo.
 The line chart below shows the progression of Bitcoin's 'Close' Price over time since inception in the cryptocurrency market. Near the end of 2018, Bitcoin's price crashed, and there is quite the speculation that Bitcoin may experience another similar plunge in the near future following its' exponentially increasing price/bullish trend since March, 2020. A drastic negative market correction could potentially drive the price to plunge due to the domino effect of investors selling off their Bitcoin!  
 
 <p align="center">
-<img src="Images/BTClifetime.png" width="600" height="275">
+<img src="Images/BTClifetime.png" width="500" height="275">
 <p/>
 
 Other prominent financial indicators in making informed trades include the use of VWAP vs. Price, MACD line vs. Signal line, and RSI. Below are line charts displaying 10-day VWAP vs. BTC-USD 'Close' Price, MACD line vs. Signal line, and Biweekly RSI. When VWAP lies above actual price, this is an indicator to sell or wait to buy, whereas when VWAP lies below, this is an indicator to buy or wait to sell. Cross-overs between VWAP and actual price are the optimal time to make these decisions, whether crossing above or below. When MACD crosses above the Signal line, this is an indicator to buy, whereas vice versa an indicator to sell. Moreover, the thresholds of 70 and 30 for RSI are generally used to indicate when a cryptocurrency is overbought or oversold, indicating times to sell or buy respectively.   
 
 <p align="center">
-<img src="Images/VWAP.png" width="600" height="275">
+<img src="Images/VWAP.png" width="500" height="275">
 <p/>
 
 <p align="center">
-<img src="Images/MACDSignal.png" width="600" height="275">
+<img src="Images/MACDSignal.png" width="500" height="275">
 <p/>
 
 <p align="center">
-<img src="Images/RSI.png" width="600" height="275">
+<img src="Images/RSI.png" width="500" height="275">
 <p/>
 
 As for the histogramic distribution of Bitcoin's losses and gains over time, the majority of the occurrences lie in the 0 to -1% bin, indicating the majority of daily returns is a loss ranging from 0 to 1%. See below. 
@@ -44,15 +44,15 @@ As for modeling Bitcoin's 'Close' Price, the first model incorporated ln(Close) 
 <p/>
 
 <p align="center">
-<img src="Images/Model1Model2Actual.png" width="600" height="250">
+<img src="Images/Model1Model2Actual.png" width="500" height="250">
 <p/>
 
 <p align="center">
-<img src="Images/Model2Model6Actual.png" width="600" height="250">
+<img src="Images/Model2Model6Actual.png" width="500" height="250">
 <p/>
 
 <p align="center">
-<img src="Images/MA_Actual.png" width="600" height="250">
+<img src="Images/MA_Actual.png" width="500" height="250">
 <p/>
 
 The best and final model was an ARIMA model of order = (1,1,1), or p=1, d=1, and q=1. This was found by executing a grid search among potential seasonality through the pmdarima Python library ranging from 1 to 30 days, or data points, per cycle. This type of model had the highest log likelihood score among all other models calculated by the function. The "weekly" seasonal model with the lowest AIC, i.e. SARIMAX(order = (1,1,1), seasonal_order = (1,0,[],7)), didn't have a lower RMSE, but was the second best model. Prediction of tomorrow's close price will be done when such data becomes available later, and this will be compared in terms of percent error relative to actual price. LSTM time-series modeling was attempted, however more granular data is needed for this model to be effectively reached, executable, and accurate.
@@ -70,7 +70,7 @@ The best and final model was an ARIMA model of order = (1,1,1), or p=1, d=1, and
 <p/>
 
 <p align="center">
-<img src="Images/ARIMASARIMAXActual.png" width="600" height="250">
+<img src="Images/ARIMASARIMAXActual.png" width="500" height="250">
 <p/>
 
 
