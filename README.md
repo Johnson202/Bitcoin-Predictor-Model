@@ -4,7 +4,7 @@ This project focuses on the following: Can Bitcoin's (BTC) price be predicted wi
 
 ## Exploring The Data
 
-The Yahoo! Finance datasets, specifically BTC-USD, BCH-USD, BNB-USD, BSV-USD, EOS-USD, ETH-USD, LTC-USD, XRP-USD, and XTZ-USD, consisted of 2,310 rows, 1,270 rows, 1,268 rows, 251 rows, 1,292 rows, 1,986 rows, 2,310 rows, 2,310 rows, and 251 rows of data respectively, for a total of 13,248 rows of data. Each had the same column names/values of 'Date', 'Open, 'High', 'Low', 'Close', 'Adj Close', and 'Volume.' Each of the models built used the dependent variable of 'Close' since the main focus from a Finance perspective is to predict this when dealing with daily valuation data. The final date of the data used was 12JAN21.
+The Yahoo! Finance datasets, specifically BTC-USD, BCH-USD, BNB-USD, BSV-USD, EOS-USD, ETH-USD, LTC-USD, XRP-USD, and XTZ-USD, consisted of 2,309 rows, 1,269 rows, 1,267 rows, 250 rows, 1,291 rows, 1,985 rows, 2,309 rows, 2,309 rows, and 250 rows of data respectively, for a total of 13,239 rows of data. Each had the same column names/values of 'Date', 'Open, 'High', 'Low', 'Close', 'Adj Close', and 'Volume.' Each of the models built used the dependent variable of 'Close' since the main focus from a Finance perspective is to predict this when dealing with daily valuation data. The final date of the data used was 11JAN21.
 
 The datasets can be found [here] via applicable searches (https://finance.yahoo.com/).
 
@@ -37,7 +37,7 @@ As for the histogramic distribution of Bitcoin's losses and gains over time, the
 
 ## Modeling
 
-As for modeling Bitcoin's 'Close' Price, the first model incorporated ln(Close) ~ Relative_Time, i.e. with day 0 at 01FEB20 and day 346 at 12JAN21, a total of 347 days. This served as more of start point since with time series, autoregression is a typical issue to have to deal with, as was the case with this initial model. The second model incorporated seasonality on a monthly time scale, with each month being statistically significant in describing the variation of BTC-USD's 'Close' Price, i.e. ln(Close) ~ Relative_Time + monthly dummy variables. Some outlier residuals distorted the evenness of the overall distribution of the residuals, but the residuals were overall random and normal. To incorporate additional top cryptocurrency prices into the second model to increase its' predictive power, their time-lagged (by 1 day) correlations with BTC-USD were visualized in a correlation plot as seen below. Time lag was applied in order to be able to predict the following day's BTC-USD 'Close' price. In order of highest to lowest significant correlation on this specific time scale from 01FEB20, i.e. ETH-USD, LTC-USD, BNB-USD, BCH-USD, and XRP-USD, all were included until arriving at a model with only statistically significant independent variables: Close ~ Relative_Time + Feb + Jun + Aug + Sep + Oct + Nov + Jan + Close_LTC_lag_1 + Close_XRP_lag_1 + Close_ETH_lag_1. To have a baseline model for comparison purposes, a 3-day MA time series model was calculated; this baseline model's RMSE was greater than this third model, i.e. ~787.15 vs. ~614.26, therefore this model was an improvement upon the baseline model. For a comparison of these models against actual price, see below. 
+As for modeling Bitcoin's 'Close' Price, the first model incorporated ln(Close) ~ Relative_Time, i.e. with day 0 at 01FEB20 and day 345 at 11JAN21, a total of 346 days. This served as more of start point since with time series, autoregression is a typical issue to have to deal with, as was the case with this initial model. The second model incorporated seasonality on a monthly time scale, with each month being statistically significant in describing the variation of BTC-USD's 'Close' Price, i.e. ln(Close) ~ Relative_Time + monthly dummy variables. Some outlier residuals distorted the evenness of the overall distribution of the residuals, but the residuals were overall random and normal. To incorporate additional top cryptocurrency prices into the second model to increase its' predictive power, their time-lagged (by 1 day) correlations with BTC-USD were visualized in a correlation plot as seen below. Time lag was applied in order to be able to predict the following day's BTC-USD 'Close' price. In order of highest to lowest significant correlation on this specific time scale from 01FEB20, i.e. ETH-USD, LTC-USD, BNB-USD, BCH-USD, and XRP-USD, all were included until arriving at a model with only statistically significant independent variables: Close ~ Relative_Time + Feb + Jun + Aug + Sep + Oct + Nov + Jan + Close_LTC_lag_1 + Close_XRP_lag_1 + Close_ETH_lag_1. To have a baseline model for comparison purposes, a 3-day MA time series model was calculated; this baseline model's RMSE was greater than this third model, i.e. ~764.54 vs. ~613.96, therefore this model was an improvement upon the baseline model. For a comparison of these models against actual price, see below. 
 
 <p align="center">
 <img src="Images/corrheatmap.png" width="300" height="200">
@@ -55,7 +55,7 @@ As for modeling Bitcoin's 'Close' Price, the first model incorporated ln(Close) 
 <img src="Images/MA_Actual.png" width="500" height="250">
 <p/>
 
-The best and final model was an ARIMA model of order = (1,1,1), or p=1, d=1, and q=1. This was found by executing a grid search among potential seasonality through the pmdarima Python library ranging from 1 to 30 days, or data points, per cycle. This type of model had the highest log likelihood score among all other models calculated by the function. The "weekly" seasonal model with the lowest AIC, i.e. SARIMAX(order = (1,1,1), seasonal_order = (1,0,[],7)), didn't have a lower RMSE, but was the second best model. Prediction of tomorrow's close price will be done when such data becomes available later, and this will be compared in terms of percent error relative to actual price. LSTM time-series modeling was attempted, however more granular data is needed for this model to be effectively reached, executable, and accurate.
+The best and final model was an ARIMA model of order = (4,1,0), or p=4, d=1, and q=0. This was found by executing a grid search among potential seasonality through the pmdarima Python library ranging from 1 to 30 days, or data points, per cycle. This type of model had the highest log likelihood score among all other models calculated by the function. The "weekly" seasonal model with the lowest AIC, i.e. SARIMAX(order = (1,1,1), seasonal_order = (1,0,[],7)), didn't have a lower RMSE, but was the second best model. Prediction of tomorrow's close price with the best model resulted in a close price of $36,010.05, and when compared in terms of percent error relative to the actual price, i.e. $33922.96, the error was ~6.15%. LSTM time-series modeling was attempted, however more granular data is needed for this model to be effectively reached, executable, and accurate.
 
 <p align="center">
 <img src="Images/BoxCoxDifferenceResiduals.png" width="350" height="150">
@@ -73,13 +73,18 @@ The best and final model was an ARIMA model of order = (1,1,1), or p=1, d=1, and
 <img src="Images/ARIMASARIMAXActual.png" width="500" height="250">
 <p/>
 
+A simple algorithm was derived to make use of all financial indicators calculated in this project, as well as to incorporate the prediction of BTC-USD Close Price with the best model. Below are the results of that algorithm!
+
+<p align="center">
+<img src="Images/Algorithm.png" width="500" height="250">
+<p/>
 
 ## Next Steps
 
 - Find more granular cryptocurrency data, i.e. of BTC-USD.
 - With more granular data, complete LSTM modeling of BTC-USD and tune/re-adjust to get better MSE score than the best ARIMA model.
 - Model other cryptocurrencies through similar pipeline to construct cryptocurrency investment portfolio based on predictions.
-- Incorporate algorithmic trading advice via Python based on predictions and financial indicators' results, as well as automate gathering of cryptocurrency data.
+- Incorporate more complex algorithmic trading advice via Python based on predictions and financial indicators' results, as well as automate gathering of cryptocurrency data.
 - Inclusion of other factors into models, e.g. macroeconomic factors such as exchange rate of USD (DXY index), GDP, unemployment rate, and overall progression of the United States' debt, as well as results of sentiment analysis of the respective cryptocurrencies on popular cryptocurrency websites.  
 
 ## Main Python Libraries
@@ -108,4 +113,5 @@ The best and final model was an ARIMA model of order = (1,1,1), or p=1, d=1, and
 - Plot_Series_Difference.py : contains function that plots a series of data and its' first difference separately
 - LSTM_Windowize.py : contains function to "time" windowize data in preparation for LSTM/RNN modeling
 - Coinbase_Data.py : contains function to pull Coinbase data for desired/inputted cryptocurrency 
+- Bitcoin_Tool.py: contains simple algorithm incorporating VWAP vs. Close, MACD vs. Signal, RSI vs. Thresholds, and the predicted price from the best model.
 - Predicting_Bitcoin_Price.ipynb : code to explore data, generate models, and produce results of those models
