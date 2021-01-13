@@ -75,9 +75,12 @@ The best and final model was an ARIMA model of order = (4,1,0), or p=4, d=1, and
 
 A simple algorithm was derived to make use of all financial indicators calculated in this project, as well as to incorporate the prediction of BTC-USD Close Price with the best model. Below are the results of that algorithm!
 
-<p align="center">
-<img src="Images/Algorithm.png" width="500" height="250">
-<p/>
+----------------------------------------------------------------------------------------
+10-day VWAP is above Close Price and crossing above Close Price (SELL).
+MACD is below Signal (SELL).
+RSI is above 70 (SELL).
+Today's predicted BTC-USD Close Price is $36010.050993186596. Yesterday's BTC-USD Close Price was $35566.65625.
+----------------------------------------------------------------------------------------
 
 ## Next Steps
 
