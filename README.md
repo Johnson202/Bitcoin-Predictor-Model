@@ -79,7 +79,7 @@ The best and final model was an ARIMA model of order = (1,1,1), or p=1, d=1, and
 - Find more granular cryptocurrency data, i.e. of BTC-USD.
 - With more granular data, complete LSTM modeling of BTC-USD and tune/re-adjust to get better MSE score than the best ARIMA model.
 - Model other cryptocurrencies through similar pipeline to construct cryptocurrency investment portfolio based on predictions.
-- Incorporate algorithmic trading advice via Python based on predictions and financial indicators' results.
+- Incorporate algorithmic trading advice via Python based on predictions and financial indicators' results, as well as automate gathering of cryptocurrency data.
 - Inclusion of other factors into models, e.g. macroeconomic factors such as exchange rate of USD (DXY index), GDP, unemployment rate, and overall progression of the United States' debt, as well as results of sentiment analysis of the respective cryptocurrencies on popular cryptocurrency websites.  
 
 ## Main Python Libraries
