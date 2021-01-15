@@ -55,7 +55,7 @@ As for modeling Bitcoin's 'Close' Price, the first model incorporated ln(Close) 
 <img src="Images/MA_Actual.png" width="500" height="250">
 <p/>
 
-The best and final model was an ARIMA model of order = (4,1,0), or p=4, d=1, and q=0. This was found by executing a grid search among potential seasonality through the pmdarima Python library ranging from 1 to 30 days, or data points, per cycle. This type of model had the highest log likelihood score among all other models calculated by the function. The "weekly" seasonal model with the lowest AIC, i.e. SARIMAX(order = (1,1,1), seasonal_order = (1,0,[],7)), didn't have a lower RMSE, but was the second best model. Prediction of tomorrow's close price with the best model resulted in a close price of $36,010.05, and when compared in terms of percent error relative to the actual price, i.e. $33922.96, the error was ~6.15%. LSTM time-series modeling was attempted, however more granular data is needed for this model to be effectively reached, executable, and accurate.
+The best and final model was a Seasonal ARIMA model of order = (0,1,0), or p=0, d=1, and q=0, and seasonal_order = (2,0,0,10). This was found by executing a grid search among potential seasonality through the pmdarima Python library ranging from 1 to 30 days, or data points, per cycle over all of BTC-USD Close price data. This type of model had the highest log likelihood and lowest AIC score among all other models calculated by the function. The alternate ARIMA model with the highest log likelihood, i.e. ARIMA(4,1,0), didn't have a lower RMSE, but was the second best model, and this model was constructed over just the past recent year's BTC-USD Close price data. Prediction of tomorrow's close price with the best model resulted in a close price of $35,739.08, and when compared in terms of percent error relative to the actual price, i.e. $33922.96, the error was ~5.35%. LSTM time-series modeling was attempted, however more granular data is needed for this model to be effectively reached, executable, and accurate.
 
 <p align="center">
 <img src="Images/BoxCoxDifferenceResiduals.png" width="350" height="150">
@@ -79,13 +79,13 @@ A simple algorithm was derived to make use of all financial indicators calculate
 10-day VWAP is above Close Price and crossing above Close Price (SELL).
 MACD is below Signal (SELL).
 RSI is above 70 (SELL).
-Today's predicted BTC-USD Close Price is $36010.050993186596. Yesterday's BTC-USD Close Price was $35566.65625.
+Today's predicted BTC-USD Close Price is $35739.08. Yesterday's BTC-USD Close Price was $35566.66.
 ----------------------------------------------------------------------------------------
 
 ## Next Steps
 
 - Find more granular cryptocurrency data, i.e. of BTC-USD.
-- With more granular data, complete LSTM modeling of BTC-USD and tune/re-adjust to get better MSE score than the best ARIMA model.
+- With more granular data, complete LSTM modeling of BTC-USD and tune/re-adjust to get better MSE score than the best Seasonal ARIMA model.
 - Model other cryptocurrencies through similar pipeline to construct cryptocurrency investment portfolio based on predictions.
 - Incorporate more complex algorithmic trading advice via Python based on predictions and financial indicators' results, as well as automate gathering of cryptocurrency data.
 - Inclusion of other factors into models, e.g. macroeconomic factors such as exchange rate of USD (DXY index), GDP, unemployment rate, and overall progression of the United States' debt, as well as results of sentiment analysis of the respective cryptocurrencies on popular cryptocurrency websites.  
