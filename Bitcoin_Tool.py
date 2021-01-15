@@ -43,7 +43,7 @@ def BTC_assist_tool(df, best_model, lmda):
     pred_untransf = inv_boxcox(pred_transf, lmda)
     yesterday = df['Close'][len(df)-1]
     
-    print(f'Today\'s predicted BTC-USD Close Price is ${pred_untransf}. Yesterday\'s BTC-USD Close Price was ${yesterday}.')
+    print(f'Today\'s predicted BTC-USD Close Price is ${pred_untransf:.2f}. Yesterday\'s BTC-USD Close Price was ${yesterday:.2f}.')
 
 if __name__ == '__main__':
     pass
