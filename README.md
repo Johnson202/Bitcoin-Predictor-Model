@@ -55,18 +55,22 @@ As for modeling Bitcoin's 'Close' Price, the first model incorporated ln(Close) 
 <img src="Images/MA_Actual.png" width="500" height="250">
 <p/>
 
-The best and final model was a Seasonal ARIMA model of order = (0,1,0), or p=0, d=1, and q=0, and seasonal_order = (2,0,0,10). This was found by executing a grid search among potential seasonality through the pmdarima Python library ranging from 1 to 30 days, or data points, per cycle over all of BTC-USD Close price data. This type of model had the highest log likelihood and lowest AIC score among all other models calculated by the function. The alternate ARIMA model with the highest log likelihood, i.e. ARIMA(4,1,0), didn't have a lower RMSE, but was the second best model, and this model was constructed over just the past recent year's BTC-USD Close price data. Prediction of tomorrow's close price with the best model resulted in a close price of $35,739.08, and when compared in terms of percent error relative to the actual price, i.e. $33922.96, the error was ~5.35%. LSTM time-series modeling was attempted, however more granular data is needed for this model to be effectively reached, executable, and accurate.
+The best and final model was a Seasonal ARIMA model of order = (0,1,0), or p=0, d=1, and q=0, and seasonal_order = (2,0,0,10). This was found by executing a grid search among potential seasonality through the pmdarima Python library ranging from 1 to 30 days, or data points, per cycle over all of BTC-USD Close price data. This type of model had the highest log likelihood and lowest AIC score among all other models calculated by the function. The alternate ARIMA model found via the same grid search with the highest log likelihood, i.e. ARIMA(4,1,0), didn't have a lower RMSE, but was the second best model, and this model was constructed over just the past recent year's BTC-USD Close price data. Prediction of tomorrow's close price with the best model resulted in a close price of $35,739.08, and when compared in terms of percent error relative to the actual price, i.e. $33922.96, the error was ~5.35%. LSTM time-series modeling was attempted, however more granular data is needed for this model to be effectively reached, executable, and accurate.
 
 <p align="center">
 <img src="Images/BoxCoxDifferenceResiduals.png" width="350" height="150">
 <p/>
 
 <p align="center">
-<img src="Images/SARIMAXResiduals.png" width="350" height="150">
+<img src="Images/BoxCoxDifferenceResidualsAll.png" width="350" height="150">
 <p/>
 
 <p align="center">
 <img src="Images/ARIMAResiduals.png" width="350" height="150">
+<p/>
+
+<p align="center">
+<img src="Images/SARIMAXResiduals.png" width="350" height="150">
 <p/>
 
 <p align="center">
